@@ -1,19 +1,19 @@
-from interfaces.i_auth import IAuthStrategy
+from interfaces.auth_interface import AuthStrategy
 from data.users import USERS
 from utils.password_hasher import PasswordHasher
 
 ph = PasswordHasher()
 
-class AuthByUsername(IAuthStrategy):
+class AuthByUsername(AuthStrategy):
     def authenticate(self, identifier, password):
         for user in USERS:
-            if user.username == identifier and ph.verify_password(password, user.password_hashed):
+            if user.username.lower() == identifier.lower() and ph.verify_password(password, user.password_hashed):
                 return user
         return None
 
-class AuthByEmail(IAuthStrategy):
+class AuthByEmail(AuthStrategy):
     def authenticate(self, identifier, password):
         for user in USERS:
-            if user.email == identifier and ph.verify_password(password, user.password_hashed):
+            if user.email.lower() == identifier.lower() and ph.verify_password(password, user.password_hashed):
                 return user
         return None

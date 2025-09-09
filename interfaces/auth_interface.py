@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class IAuthStrategy(ABC):
+class AuthStrategy(ABC):
     @abstractmethod
     def authenticate(self, identifier, password):
         pass
