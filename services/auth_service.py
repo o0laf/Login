@@ -8,5 +8,5 @@ class AuthService:
     def login(self, identifier, password):
         user = self.strategy.authenticate(identifier, password)
         if user:
-            return f"✅ Bienvenido {user.username}"
-        return "❌ Usuario o contraseña incorrectos"
+            return f"Bienvenido {user.username}"
+        return "Usuario o contraseña incorrectos"
